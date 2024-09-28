@@ -1,0 +1,6 @@
+// NOT USING PRISMA
+// NOT USING PRISMA SCHEMA
+// NOT USING .ENV
+// NOT USING [...netauth].tsx
+// NOT USING serverAuth
+
