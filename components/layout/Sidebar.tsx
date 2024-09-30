@@ -1,15 +1,18 @@
 import { BsBellFill, BsHouseFill } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
-import { signOut } from "next-auth/react";
+// import { signOut } from "next-auth/react";
 
 import useCurrentUser from "@/hooks/useCurrentUser";
 
 import SidebarLogo from "./SidebarLogo";
 import SidebarItem from "./SidebarItem";
 import SidebarTweetButton from "./SidebarTweetButton";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
+    let navigate = useNavigate();
+
     const { data: currentUser } = useCurrentUser();
 
     const items = [
@@ -22,14 +25,14 @@ const Sidebar = () => {
             label: 'Notifications',
             href: '/notifications',
             icon: BsBellFill,
-            auth: true,
-            alert: currentUser?.hasNotification,
+            // auth: true,
+            // alert: currentUser?.hasNotification,
         },
         {
             label: 'Profile',
             href: `/users/${currentUser?.id}`,
             icon: FaUser,
-            auth: true
+            // auth: true
         }
     ];
     return (
@@ -43,12 +46,12 @@ const Sidebar = () => {
                             href={item.href}
                             label={item.label}
                             icon={item.icon}
-                            auth={item.auth}
-                            alert={item.alert}
+                            // auth={item.auth}
+                            // alert={item.alert}
                         />
                     ))}
                     {currentUser && (
-                        <SidebarItem onClick={() => signOut()} icon={BiLogOut} label='Logout' />
+                        <SidebarItem onClick={() => navigate("/LoginModal")} icon={BiLogOut} label='Logout' />
                     )}
                     <SidebarTweetButton />
                 </div>

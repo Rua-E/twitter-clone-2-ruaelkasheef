@@ -9,6 +9,7 @@ import Input from "../Input";
 import Modal from "../Modal";
 
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const RegisterModal = () => {
     const loginModal = useLoginModal();
@@ -28,6 +29,8 @@ const RegisterModal = () => {
         registerModal.onClose();
         loginModal.onOpen();
     }, [isLoading, registerModal, loginModal])
+
+    let navigate = useNavigate();
 
     // const onSubmit = useCallback(async () => {
     //         try {
@@ -104,14 +107,14 @@ const RegisterModal = () => {
     )
 
     return (
-        <div onClick={}>
+        <div onClick={() => navigate("/")}>
             <Modal 
                 disabled={isLoading}
                 isOpen={registerModal.isOpen}
                 title="Create an account"
                 actionLabel="Register"
                 onClose={registerModal.onClose}
-                onSubmit={onSubmit}
+                onClick={() => navigate("/")}
                 body={bodyContent}
                 footer={footerContent}
             />
